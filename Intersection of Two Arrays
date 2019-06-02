@@ -1,0 +1,20 @@
+class Solution {
+public:
+	vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+		unordered_map<int, bool> seen;
+		vector<int> res;
+		for (int i = 0; i < nums1.size(); i++) {
+			seen.insert(make_pair(nums1[i], false));
+		}
+		for (int j = 0; j < nums2.size(); j++) {
+			auto itr = seen.find(nums2[j]);
+			if (itr != seen.end()) {
+				if (!itr->second) {  //false
+					res.push_back(nums2[j]);
+					itr->second = true;
+				}
+			}
+		}
+		return res;
+	}
+};
